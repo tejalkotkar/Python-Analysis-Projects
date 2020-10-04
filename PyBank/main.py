@@ -70,7 +70,7 @@ for key, value in dict_finances.items():
         pre_value = value
 
 # Calculating Average change
-Avg_change = sum(average_changes.values()) / len(average_changes)
+Avg_change = round(sum(average_changes.values()) / len(average_changes),2)
 
 # Calculating Greatest Increase in profit
 Max_key = max(average_changes, key=average_changes.get)
@@ -81,7 +81,7 @@ Min_key = min(average_changes, key=average_changes.get)
 Min_value = min(average_changes.values())
 
 # Print the values to terminal and .txt file
-print_output("Financial Analysis")
+print_output("PyBank Financial Analysis")
 print_output("----------------------------")
 print_output("Total Monts:" + str(total_months))
 print_output("Total: $" + str(Net_profit_loss))
