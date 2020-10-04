@@ -46,7 +46,7 @@ with open(csvpath,'r') as csvfile:
     # Read through all rows and print to dictionary
     for row in csvreader:
         total_votes += 1
-        if row[2] not in  voting.keys():
+        if row[2] not in voting.keys():
             voting[row[2]] = []
         voting[row[2]].append(row[0])
 
