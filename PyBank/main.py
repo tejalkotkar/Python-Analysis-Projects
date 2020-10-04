@@ -17,9 +17,6 @@ csvpath = os.path.join('Resources','budget_data.csv')
 # Variable holding txt file path
 txtfilepath = os.path.join('Analysis','Financial_Analysis.txt')
 
-# Open csv file to read from 
-# create .txt file and open ion append mode
-
 #function to print the output to terminal & .txt file
 def print_output(message):
 
@@ -32,6 +29,7 @@ def print_output(message):
         # Print oputput message to .txt file
         txtfile.write(message + "\n")
 
+# Open csv file to read from 
 with open(csvpath,'r') as csvfile: 
     # Read from csv file
     csvreader = csv.reader(csvfile, delimiter=',') 
