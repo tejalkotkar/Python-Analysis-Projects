@@ -34,38 +34,30 @@ with open(csvpath,'r') as csvfile:
     # Read from csv file
     csvreader = csv.reader(csvfile, delimiter=',') 
 
-    # Get the csv header , this also skips the header
-    csv_header = next(csvreader, None)
+    # Skipping header
+    next(csvreader, None)
 
-    # Initialise toal months variable to 0 and create an empty dictonary
+    # Initialise variables and create an empty dictonary
     total_months = 0
-    dict_finances = {}
+    pre_value = 0
+    Net_profit_loss = 0
+    average_changes = {}
 
     # Read through all rows and print to dictionary
     for row in csvreader:
+
+        # Calculate total number of month
         total_months += 1
-        dict_finances[row[0]] = int(row[1])
 
-# Calculate Net total amount of "Profit/Losses" over the entire period
-Net_profit_loss = sum(dict_finances.values())
+        # Calculate Net Profit
+        Net_profit_loss = Net_profit_loss + int(row[1])
+        
+        # Calculating change over months
+        # For first iteration when there is no pre data , just store value and from second iteration start calculations
+        if pre_value != 0:
+           average_changes[row[0]] = int(row[1]) - pre_value
 
-# Define an empty dictionary and initialise variable i to 0
-average_changes = {}
-i = 0
-
-# Iterate through dictonary dict_finances to get the change in profit/loss over a time period
-# and add that change to new dictonary called average_changes
-for key, value in dict_finances.items():
-    # For first iteration just store the key and value 
-    if i==0:    
-        pre_key = key
-        pre_value = value
-        i +=1
-        continue
-    else:           # From second iterations calculate the change in profit/loss and store values for nect calculations
-        average_changes[key] = value - pre_value
-        pre_key = key
-        pre_value = value
+        pre_value = int(row[1])
 
 # Calculating Average change
 Avg_change = round(sum(average_changes.values()) / len(average_changes),2)
