@@ -36,10 +36,10 @@ with open(csvpath,'r') as csvfile:
     # Read from csv file
     csvreader = csv.reader(csvfile, delimiter=',') 
 
-    # Get the csv header , this also skips the header
-    csv_header = next(csvreader, None)
+    # Skip the header
+    next(csvreader, None)
 
-        # Initialise toal_votes variable to 0 and create an empty dictonary
+    # Initialise toal_votes variable to 0 and create an empty dictonary
     total_votes = 0
     voting = {}
 
