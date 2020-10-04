@@ -19,9 +19,6 @@ csvpath = os.path.join('Resources','election_data.csv')
 # Variable holding txt file path
 txtfilepath = os.path.join('Analysis','VotePoll_Analysis.txt')
 
-# Open csv file to read from 
-# create .txt file and open ion append mode
-
 #function to print the output to terminal & .txt file
 def print_output(message):
 
@@ -34,6 +31,7 @@ def print_output(message):
         # Print oputput message to .txt file
         txtfile.write(message + "\n")
 
+# Open CSV file to read from
 with open(csvpath,'r') as csvfile: 
     # Read from csv file
     csvreader = csv.reader(csvfile, delimiter=',') 
@@ -52,6 +50,15 @@ with open(csvpath,'r') as csvfile:
             voting[row[2]] = []
         voting[row[2]].append(row[0])
 
+# Print the values to terminal and .txt file
+print_output("Election Results")
+print_output("----------------------------")
+print_output("Total Votes: " + str(total_votes))
+print_output("----------------------------")
+
+#Declare an another empty dictonary:
+final = {}
+
 # Iterate through each candidate
 for key in voting:
     # Get the count of votes for each candidate
@@ -60,11 +67,16 @@ for key in voting:
     # Count the percentage of votes received by candidate
     percent_vote = (vote_count / total_votes) * 100
 
-    print("{} : {:.3f}% ({})".format(key, percent_vote, vote_count)) 
+    # Add key and percent vote to final dictonary
+    final[key] = percent_vote
 
+    # Print output to terminal & file
+    print_output("{} : {:.3f}% ({})".format(key, percent_vote, vote_count)) 
 
-# Print the values to terminal and .txt file
-# print_output("Election Results")
-# print_output("----------------------------")
-# print_output("Total Votes: " + str(total_votes))
-# print_output("----------------------------")
+# Get the candidate with max votes:
+winner = max(final, key=final.get)
+
+# Print the result
+print_output("----------------------------")
+print_output("Winner: {}".format(winner))
+print_output("----------------------------")
