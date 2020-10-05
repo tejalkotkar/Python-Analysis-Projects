@@ -51,21 +51,19 @@ with open(csvpath, 'r') as csvfile, open(export_csv_path, 'a', newline='') as ex
     # Iterating through each row
     for row in csvreader:
 
+        # Store emp id in variable
         emp_id = row[0]
-        DOB = row[2]
-        SSN = row[3]
-        State = row[4]
-
+        
         # Split name into first name & last name
         name = row[1].split(" ")
         fname = name[0]
         lname = name[1]
 
         # Change format of DOB
-        DOB = datetime.datetime.strptime(DOB, "%Y-%m-%d").strftime("%m/%d/%Y")
+        DOB = datetime.datetime.strptime(row[2], "%Y-%m-%d").strftime("%m/%d/%Y")
 
         # Change SSN to hide numbers
-        new_SSN = list(SSN)
+        new_SSN = list(row[3])
         count = 0
         for i in range(0,len(new_SSN)):
             if(count < 5):
