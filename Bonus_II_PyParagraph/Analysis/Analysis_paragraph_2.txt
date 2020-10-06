@@ -1,0 +1,7 @@
+
+Paragraph Analysis
+-------------------------
+Approximate Word Count : 285
+Approximate Sentence Count : 11
+Approximate Letter Count (per word) : 5.3
+Approximate Sentence Length (in words) : 25.9
