@@ -66,6 +66,6 @@ message = message1 + message2
 # Print output to terminal
 print(message)
 
-# Open a .txt file in append mode, as .txt file is not created already this statement will also create a file
+# Open a .txt file in write mode, if .txt file is not created already this statement will create a file as well
 with open(txtfilepath,'w') as txtfile: 
     txtfile.write(message)
