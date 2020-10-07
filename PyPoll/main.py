@@ -19,6 +19,10 @@ csvpath = os.path.join('Resources','election_data.csv')
 # Variable holding txt file path
 txtfilepath = os.path.join('Analysis','VotePoll_Analysis.txt')
 
+# Remove/Delete the Analysis file if already exist 
+if os.path.exists(txtfilepath):
+    os.remove(txtfilepath)
+
 #function to print the output to terminal & .txt file
 def print_output(message):
 
