@@ -25,6 +25,10 @@ csvpath = os.path.join('Resources','employee_data.csv')
 # Variable holding csv  file path for file to write to
 export_csv_path = os.path.join('Exported_CSV','Exported_Employee_Data.csv')
 
+# Remove/Delete the Analysis file if already exist 
+if os.path.exists(export_csv_path):
+    os.remove(export_csv_path)
+
 # Define a dtictonary for State Abbrevation:
 us_state_abbrv = {'Alabama': 'AL', 'Alaska': 'AK', 'Arizona': 'AZ', 'Arkansas': 'AR', 'California': 'CA', 'Colorado': 'CO', 'Connecticut': 'CT', 'Delaware': 'DE', 
 				   'Florida': 'FL', 'Georgia': 'GA', 'Hawaii': 'HI', 'Idaho': 'ID', 'Illinois': 'IL', 'Indiana': 'IN', 'Iowa': 'IA', 'Kansas': 'KS', 'Kentucky': 'KY', 
