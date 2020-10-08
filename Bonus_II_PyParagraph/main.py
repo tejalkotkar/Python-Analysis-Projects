@@ -17,6 +17,18 @@ filename = input("Enter a file name for paragraph analysis ==> ")
 # Contruct filepath
 filepath = os.path.join('raw_data',filename)
 
+#function to print the output to terminal & .txt file
+def print_output(filename, message):
+
+    # Open a .txt file in append mode, as .txt file is not created already this statement will also create a file
+    with open(filename,'a') as txtfile:   
+
+        # Print output to terminal
+        print(message)
+
+        # Print oputput message to .txt file
+        txtfile.write(message + "\n")
+
 # Open .txt file and read 
 with open(filepath, 'r',encoding='utf-8') as f:
     freader = f.readlines()
@@ -47,19 +59,19 @@ AvgLetterCount = round( Total_Characters / word_count, 1)
 # Average sentence length (in words)
 AvgSenLength = round(word_count/sentence_count, 1)
 
-message1 = "\nParagraph Analysis\n-------------------------\nApproximate Word Count : {}\nApproximate Sentence Count : {}\n".format(word_count, sentence_count)
-message2 = "Approximate Letter Count (per word) : {}\nApproximate Sentence Length (in words) : {}".format(AvgLetterCount, AvgSenLength)
-message = message1 + message2
-
-# Print analysis on terminal
-print(message)
-
 # Create a analysis file in Analysis Directory
 output_file = "Analysis_"+filename
 
 # Contruct filepath
 outfilepath = os.path.join('Analysis',output_file)
 
-# Create output file, open it in write mode and print the analysis
-with open(outfilepath, 'w') as outfile:
-    outfile.write(message)
+# Remove/Delete the Analysis file if already exist 
+if os.path.exists(outfilepath):
+    os.remove(outfilepath)
+
+# Calling a print_output function to print result on terminarl and write to file
+print_output(outfilepath, "Paragraph Analysis\n-------------------------")
+print_output(outfilepath, "Approximate Word Count : {}".format(word_count))
+print_output(outfilepath, "Approximate Sentence Count : {}".format(sentence_count))
+print_output(outfilepath, "Approximate Letter Count (per word) : {}".format(AvgLetterCount))
+print_output(outfilepath, "Approximate Sentence Length (in words) : {}".format(AvgSenLength))

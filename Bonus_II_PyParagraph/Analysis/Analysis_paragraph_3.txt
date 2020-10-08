@@ -1,4 +1,3 @@
-
 Paragraph Analysis
 -------------------------
 Approximate Word Count : 120
