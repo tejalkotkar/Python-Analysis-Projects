@@ -17,6 +17,22 @@ csvpath = os.path.join('Resources','budget_data.csv')
 # Variable holding txt file path
 txtfilepath = os.path.join('Analysis','Financial_Analysis.txt')
 
+# Remove/Delete the Analysis file if already exist 
+if os.path.exists(txtfilepath):
+    os.remove(txtfilepath)
+
+#function to print the output to terminal & .txt file
+def print_output(message):
+
+    # Open a .txt file in append mode, as .txt file is not created already this statement will also create a file
+    with open(txtfilepath,'a') as txtfile:   
+
+        # Print output to terminal
+        print(message)
+
+        # Print oputput message to .txt file
+        txtfile.write(message + "\n")
+
 # Open csv file to read from 
 with open(csvpath,'r') as csvfile: 
     # Read from csv file
@@ -58,14 +74,11 @@ Max_value = max(average_changes.values())
 Min_key = min(average_changes, key=average_changes.get)
 Min_value = min(average_changes.values())
 
-# Concatinate a message in to one string to print
-message1 = "Financial Analysis \n---------------------------- \nTotal Monts: {} \nTotal: ${} \nAverage Change {} \n".format(total_months, Net_profit_loss, Avg_change)  
-message2 = "Greatest Increase in Profits: {} (${}) \nGreatest Decrease in Profits: {} (${})".format(Max_key, Max_value, Min_key, Min_value)
-message = message1 + message2
-
-# Print output to terminal
-print(message)
-
-# Open a .txt file in write mode, if .txt file is not created already this statement will create a file as well
-with open(txtfilepath,'w') as txtfile: 
-    txtfile.write(message)
+# Print the values to terminal and .txt file
+print_output("PyBank Financial Analysis")
+print_output("----------------------------")
+print_output("Total Monts: {}".format(total_months))
+print_output("Total: ${}".format(Net_profit_loss))
+print_output("Average Change: ${}".format(Avg_change))
+print_output("Greatest Increase in Profits: {} (${})".format(Max_key, Max_value))
+print_output("Greatest Increase in Profits: {} (${})".format(Min_key,Min_value))
