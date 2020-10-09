@@ -44,6 +44,7 @@ with open(csvpath,'r') as csvfile:
     # Initialise variables and create an empty dictonary
     total_months = 0
     pre_value = 0
+    flag = 0
     Net_profit_loss = 0
     average_changes = {}
 
@@ -58,10 +59,12 @@ with open(csvpath,'r') as csvfile:
         
         # Calculating change over months
         # For first iteration when there is no pre data , just store value and from second iteration start calculations
-        if pre_value != 0:
-           average_changes[row[0]] = int(row[1]) - pre_value
-
-        pre_value = int(row[1])
+        if flag == 0:
+            pre_value = int(row[1])
+            flag = 1
+        else:
+            average_changes[row[0]] = int(row[1]) - pre_value
+            pre_value = int(row[1])
 
 # Calculating Average change
 Avg_change = round(sum(average_changes.values()) / len(average_changes),2)
