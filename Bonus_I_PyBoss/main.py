@@ -70,10 +70,9 @@ with open(csvpath, 'r') as csvfile, open(export_csv_path, 'a', newline='') as ex
         new_SSN = list(row[3])
         count = 0
         for i in range(0,len(new_SSN)):
-            if(count < 5):
-                if(new_SSN[i] != '-'):
-                    new_SSN[i] = '*'
-                    count += 1
+            if count < 5 and new_SSN[i] != '-':
+                new_SSN[i] = '*'
+                count += 1
         SSN = ''.join(new_SSN)
 
         # Use State abbrevations
